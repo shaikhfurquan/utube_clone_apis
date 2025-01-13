@@ -5,6 +5,7 @@ import cors from 'cors'
 import morgan from 'morgan';
 import fileUpload from 'express-fileupload'
 import cookieParser from 'cookie-parser';
+import userRouter from './routes/user.route.js';
 
 
 const app = express();
@@ -26,7 +27,8 @@ app.get('/test', (req, res) => {
 })
 
 
-
+// routes
+app.use('/api/user' , userRouter)
 export { app }
 
 

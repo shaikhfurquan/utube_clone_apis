@@ -1,0 +1,15 @@
+YOUTUBE CLONE APIS
+
+USER APIS:
+
+REGISTER USER APIS
+POST  ==>  http://localhost:8888/api/user/register
+
+CURL:
+curl --location 'http://localhost:8888/api/user/register' \
+--form 'logo=@"/C:/Users/intel/Downloads/std1.jpg"' \
+--form 'email="kp@gmail.com"' \
+--form 'password="123"' \
+--form 'channelName="kp"' \
+--form 'phone="123"' \
+--form 'userName="kp"'
