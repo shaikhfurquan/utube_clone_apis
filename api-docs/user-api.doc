@@ -13,3 +13,21 @@ curl --location 'http://localhost:8888/api/user/register' \
 --form 'channelName="kp"' \
 --form 'phone="123"' \
 --form 'userName="kp"'
+
+
+USRE LOGIN API
+POST  ==>  http://localhost:8888/api/user/login
+
+{
+    "email" : "sf@gmail.com",
+    "password" : "123"
+}
+
+CURL:
+curl --location 'http://localhost:8888/api/user/login' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzgyOGExYTYxNDdmOGZlNDRhOTA5YTYiLCJpYXQiOjE3MzY3OTIxNjAsImV4cCI6MTczNzA1MTM2MH0.uvv3I9QRO-0X1hkzS5g3oqpkaI4shtxz0d091cqLICY' \
+--data-raw '{
+    "email" : "sf@gmail.com",
+    "password" : "123"
+}'

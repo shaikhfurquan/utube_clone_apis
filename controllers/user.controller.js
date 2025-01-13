@@ -3,6 +3,7 @@ import UserModel from '../models/user.model.js'
 import fs from 'fs'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
+import { generateToken } from "../helper/generateToken.js";
 
 
 export const registerUser = async (req, res, next) => {
@@ -58,4 +59,38 @@ export const registerUser = async (req, res, next) => {
     }
 }
 
+
+export const loginUser = async (req, res, next) => {
+    try {
+        // checking if the user is there
+        const user = await UserModel.findOne({ email: req.body.email })
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' })
+        }
+
+
+        // verify the password
+        const isMatch = await bcrypt.compare(req.body.password, user.password)
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid Credentials" })
+        }
+        user.password = undefined
+
+        // token
+        const token = generateToken(user)
+        res.cookie("token", token).status(200).json({
+            messsage: `Welcome ${user.userName}`,
+            token,
+            user,
+        })
+
+
+    } catch (error) {
+        // Handle duplicate email errors
+        // if (error.code === 11000) {
+        //     return res.status(409).json({ message: 'Email already exists' });
+        // }
+        next(error);
+    }
+}
 
