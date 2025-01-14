@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Video description is required'],
     },
-    userId: {
+    uploadedByUserId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
             required: [true, "Video URL is required"],
         },
     },
-    thumbnails: {
+    thumbnail: {
         public_id: {
             type: String,
             required: [true, "Thumbnail ID is required"],

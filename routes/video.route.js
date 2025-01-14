@@ -1,5 +1,5 @@
 import express from 'express';
-import { uploadVideo } from '../controllers/video.controller';
+import { uploadVideo } from '../controllers/video.controller.js';
 import { isAuth } from '../middlewares/isAuth.middleware.js';
 
 const videoRouter = express.Router();

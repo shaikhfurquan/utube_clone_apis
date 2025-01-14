@@ -1,0 +1,15 @@
+
+VIDEO API DOC
+
+UPLOAD VIDEO API:
+POST ==>  http://localhost:8888/api/video/upload
+
+curl --location 'http://localhost:8888/api/video/upload' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY4Nzg2NjUsImV4cCI6MTczNzEzNzg2NX0.bFzMZuJmpzf3_-L-KiyBdwaFKPZq8bIr1iS4RyBk2OQ' \
+--form 'title="mern video"' \
+--form 'description="mern url shortener"' \
+--form 'category="development"' \
+--form 'tags="mern,mern"' \
+--form 'thumbnail=@"/C:/Users/intel/Downloads/javascript-image.png"' \
+--form 'video=@"/C:/Users/intel/Downloads/demo-video.mp4"'
+
