@@ -6,10 +6,9 @@ import morgan from 'morgan';
 import fileUpload from 'express-fileupload'
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
-
+import videoRouter from './routes/video.route.js';
 
 const app = express();
-
 
 // express middlewares
 app.use(cors());
@@ -29,7 +28,7 @@ app.get('/test', (req, res) => {
 
 // routes
 app.use('/api/user' , userRouter)
+app.use('/api/video' , videoRouter)
+
+
 export { app }
-
-
-
