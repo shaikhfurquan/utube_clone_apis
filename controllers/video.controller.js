@@ -15,14 +15,14 @@ export const uploadVideo = async (req, res, next) => {
             return res.status(400).json({ message: "video and thumbnail is required" });
         }
         // upload the image
-        const uploadedVideo = await cloudinary.uploader.upload(req.files.video.tempFilePath , {
+        const uploadedVideo = await cloudinary.uploader.upload(req.files.video.tempFilePath, {
             resource_type: "video",
         })
         const uploadedThumbnail = await cloudinary.uploader.upload(req.files.thumbnail.tempFilePath)
 
         const video = {
-            public_id : uploadedVideo.public_id,
-            url : uploadedVideo.secure_url,
+            public_id: uploadedVideo.public_id,
+            url: uploadedVideo.secure_url,
         }
         const thumbnail = {
             public_id: uploadedThumbnail.public_id,
@@ -49,7 +49,7 @@ export const uploadVideo = async (req, res, next) => {
             description: req.body.description,
             video: video,
             thumbnail: thumbnail,
-            tags : req.body.tags.split(","),   // become array
+            tags: req.body.tags.split(","),   // become array
             category: req.body.category
         })
         await newVideo.save()
@@ -64,3 +64,56 @@ export const uploadVideo = async (req, res, next) => {
         next(error);
     }
 }
+
+
+export const updateVideo = async (req, res, next) => {
+    try {
+
+        // Find the video and check ownership
+        const video = await VideoModel.findById(req.params.videoId);
+        if (!video) return res.status(404).json({ message: "Video not found" });
+        if (String(video.uploadedByUserId) !== String(req.user._id)) {
+            return res.status(403).json({ message: "You have no permission to update this video" });
+        }
+
+        // Prepare updated data
+        const updatedData = {
+            title: req.body.title,
+            description: req.body.description,
+            tags: req.body.tags?.split(','),
+            category: req.body.category,
+        };
+
+        // Update thumbnail if a new file is provided
+        if (req.files?.thumbnail) {
+            // Remove old thumbnail
+            await cloudinary.uploader.destroy(video.thumbnail.public_id);
+
+            // Upload new thumbnail
+            const uploadedThumbnail = await cloudinary.uploader.upload(req.files.thumbnail.tempFilePath);
+
+            updatedData.thumbnail = {
+                public_id: uploadedThumbnail.public_id,
+                url: uploadedThumbnail.secure_url,
+            };
+
+            // Clean up temporary file
+            fs.unlink(req.files.thumbnail.tempFilePath, (err) => {
+                if (err) console.error("Error deleting temp file:", err.message);
+            });
+        }
+
+        // Update the video in the database
+        const updatedVideo = await VideoModel.findByIdAndUpdate(req.params.videoId, updatedData, { new: true });
+
+        res.status(200).json({
+            message: "Video updated successfully",
+            video: updatedVideo,
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};

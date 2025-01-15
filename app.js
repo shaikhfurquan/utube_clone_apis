@@ -27,8 +27,8 @@ app.get('/test', (req, res) => {
 
 
 // routes
-app.use('/api/user' , userRouter)
-app.use('/api/video' , videoRouter)
+app.use('/api/user', userRouter)
+app.use('/api/video', videoRouter)
 
 
 export { app }

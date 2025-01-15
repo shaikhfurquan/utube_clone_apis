@@ -4,6 +4,7 @@ VIDEO API DOC
 UPLOAD VIDEO API:
 POST ==>  http://localhost:8888/api/video/upload
 
+CURL:
 curl --location 'http://localhost:8888/api/video/upload' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY4Nzg2NjUsImV4cCI6MTczNzEzNzg2NX0.bFzMZuJmpzf3_-L-KiyBdwaFKPZq8bIr1iS4RyBk2OQ' \
 --form 'title="mern video"' \
@@ -13,3 +14,18 @@ curl --location 'http://localhost:8888/api/video/upload' \
 --form 'thumbnail=@"/C:/Users/intel/Downloads/javascript-image.png"' \
 --form 'video=@"/C:/Users/intel/Downloads/demo-video.mp4"'
 
+
+UPDATE VIDEO API:
+PUT  ==>  http://localhost:8888/api/video/update/6786b73d2279bb64ddcae017
+
+CURL: UPDATE WITH FILE(thumbnail)
+curl --location --request PUT 'http://localhost:8888/api/video/update/6786b73d2279bb64ddcae017' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY5MjM4NzUsImV4cCI6MTczNzE4MzA3NX0.rrM0ivTBSZmEG_vncacK8xoiYbOidCBjH0yYAOeBPR4' \
+--form 'thumbnail=@"/C:/Users/intel/Downloads/power-platform.png"'
+
+
+CURL : UPDATE WITHOUT FILE(text data)
+curl --location --request PUT 'http://localhost:8888/api/video/update/6786b73d2279bb64ddcae017' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY5MjM4NzUsImV4cCI6MTczNzE4MzA3NX0.rrM0ivTBSZmEG_vncacK8xoiYbOidCBjH0yYAOeBPR4' \
+--form 'title="power plateform tutorial"' \
+--form 'tags="powerapps, sharepoint, power bi,azure"'
