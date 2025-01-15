@@ -117,3 +117,31 @@ export const updateVideo = async (req, res, next) => {
         next(error);
     }
 };
+
+
+export const deleteVideo = async (req, res, next) => {
+    try {
+
+        // Find the video and check ownership
+        const video = await VideoModel.findById(req.params.videoId);
+        if (!video) return res.status(404).json({ message: "Video not found" });
+        if (String(video.uploadedByUserId) !== String(req.user._id)) {
+            return res.status(403).json({ message: "You have no permission to delete this video" });
+        }
+
+        // deleting the data sssociated with the video
+        await cloudinary.uploader.destroy(video.thumbnail.public_id)
+        await cloudinary.uploader.destroy(video.video.public_id, { resource_type: "video" })
+
+        const deletedResponse = await VideoModel.findByIdAndDelete(req.params.videoId)
+        res.status(200).json({
+            message: "Video deleted successfully",
+            deletedResponse
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};

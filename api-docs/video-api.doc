@@ -15,6 +15,8 @@ curl --location 'http://localhost:8888/api/video/upload' \
 --form 'video=@"/C:/Users/intel/Downloads/demo-video.mp4"'
 
 
+
+
 UPDATE VIDEO API:
 PUT  ==>  http://localhost:8888/api/video/update/6786b73d2279bb64ddcae017
 
@@ -29,3 +31,14 @@ curl --location --request PUT 'http://localhost:8888/api/video/update/6786b73d22
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY5MjM4NzUsImV4cCI6MTczNzE4MzA3NX0.rrM0ivTBSZmEG_vncacK8xoiYbOidCBjH0yYAOeBPR4' \
 --form 'title="power plateform tutorial"' \
 --form 'tags="powerapps, sharepoint, power bi,azure"'
+
+
+
+
+
+DELETE VIDEO API:
+DELETE  ==>  http://localhost:8888/api/video/delete/videoId
+
+CURL:
+curl --location --request DELETE 'http://localhost:8888/api/video/delete/67877c072179fa3e22754393' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY5MzM0ODgsImV4cCI6MTczNzE5MjY4OH0.DBqbAGTqRmMc3D2Rud5gIJz6hUdEI0v2xBaaIZ7nhCA'
