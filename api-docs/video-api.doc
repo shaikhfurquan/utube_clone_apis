@@ -42,3 +42,22 @@ DELETE  ==>  http://localhost:8888/api/video/delete/videoId
 CURL:
 curl --location --request DELETE 'http://localhost:8888/api/video/delete/67877c072179fa3e22754393' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzY5MzM0ODgsImV4cCI6MTczNzE5MjY4OH0.DBqbAGTqRmMc3D2Rud5gIJz6hUdEI0v2xBaaIZ7nhCA'
+
+
+
+LIKE VIDEO API:
+PUT  ==>  http://localhost:8888/api/video/like/videoId
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/video/like/678782e78dfe032b5a31fcbe' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk5Y2EyZjg0NDAyM2Q2NTAzNGMiLCJpYXQiOjE3MzY5NjgwNDIsImV4cCI6MTczNzIyNzI0Mn0.4-pqKiXOBV8iKRoYvT0wm22nt92k4ZM2z9e-nKr7T6E'
+
+
+
+
+DISLIKE VIDEO API:
+PUT  ==>  http://localhost:8888/api/video/dislike/videoId
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/video/dislike/678782e78dfe032b5a31fcbe' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk5Y2EyZjg0NDAyM2Q2NTAzNGMiLCJpYXQiOjE3MzY5Njk3OTksImV4cCI6MTczNzIyODk5OX0.vvFm1_Ukx2HHdSaPFtXrEzU3tH4ErF_G4ZuVJI6mV78'

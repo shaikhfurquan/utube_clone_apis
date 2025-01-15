@@ -145,3 +145,73 @@ export const deleteVideo = async (req, res, next) => {
         next(error);
     }
 };
+
+
+
+export const likeVideo = async (req, res, next) => {
+    try {
+
+        let video = await VideoModel.findById(req.params.videoId);
+        if (!video) return res.status(404).json({ message: "Video not found" });
+       
+        // check if the user already liked the video
+        if(video.likedBy.includes(req.user._id)){
+            return res.status(404).json({ message: "You already liked this video" });
+        }
+
+        // if the user already disliked this video then remove it from the dislike list
+        if(video.dislikedBy.includes(req.user._id)){
+            video.dislikes -= 1;
+            video.dislikedBy = video.dislikedBy.filter(id => id.toString() != req.user._id)
+        }
+        // increment the video like count and push the userid into the likedBy
+        video.likes += 1
+        video.likedBy.push(req.user._id)
+        await video.save()
+        res.status(200).json({
+            message: "Video liked successfully",
+            video: video
+
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};
+
+
+export const dislikeVideo = async (req, res, next) => {
+    try {
+
+        let video = await VideoModel.findById(req.params.videoId);
+        if (!video) return res.status(404).json({ message: "Video not found" });
+       
+        // check if the user already liked the video
+        if(video.dislikedBy.includes(req.user._id)){
+            return res.status(404).json({ message: "You already disliked this video" });
+        }
+
+         // if the user already liked this video then remove it from the liked list
+         if(video.likedBy.includes(req.user._id)){
+            video.likes -= 1;
+            video.likedBy = video.likedBy.filter(id => id.toString() != req.user._id)
+        }
+
+        // increment the video like count and push the userid into the likedBy
+        video.dislikes += 1
+        video.dislikedBy.push(req.user._id)
+        await video.save()
+        res.status(200).json({
+            message: "Video disliked successfully",
+            video: video
+
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};
