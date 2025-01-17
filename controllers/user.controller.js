@@ -95,6 +95,19 @@ export const loginUser = async (req, res, next) => {
 }
 
 
+export const logoutUser = async (req, res, next) => {
+    try {
+        res.clearCookie('token').status(200).json({
+            message: "Logout successfully",
+            user: req.user
+        })
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+
 export const subscribeUser = async (req, res, next) => {
     try {
         // Fetch both users in parallel

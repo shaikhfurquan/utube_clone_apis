@@ -34,6 +34,15 @@ curl --location 'http://localhost:8888/api/user/login' \
 
 
 
+USER LOGOUT API:
+GET  ==>  http://localhost:8888/api/user/logout
+
+CURL:
+curl --location 'http://localhost:8888/api/user/logout'
+
+
+
+
 SUBSCRIBE CHANNEL/USER API
 PUT  ==>  http://localhost:8888/api/user/subscribe/userId
 
