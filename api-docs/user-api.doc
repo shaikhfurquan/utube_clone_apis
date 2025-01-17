@@ -15,7 +15,7 @@ curl --location 'http://localhost:8888/api/user/register' \
 --form 'userName="kp"'
 
 
-USRE LOGIN API
+USER LOGIN API
 POST  ==>  http://localhost:8888/api/user/login
 
 {
@@ -31,3 +31,21 @@ curl --location 'http://localhost:8888/api/user/login' \
     "email" : "sf@gmail.com",
     "password" : "123"
 }'
+
+
+
+SUBSCRIBE CHANNEL/USER API
+PUT  ==>  http://localhost:8888/api/user/subscribe/userId
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/user/subscribe/6785599ca2f844023d65034c' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk3N2EyZjg0NDAyM2Q2NTAzNDkiLCJpYXQiOjE3MzcwMzk3MDksImV4cCI6MTczNzI5ODkwOX0.Qi3n50SQconfgmrMNMTwhA4ymX21ew3N-1-iSeG6tD8'
+
+
+
+UNSUBSCRIBE CHANNEL/USER API
+PUT  ==>  http://localhost:8888/api/user/unsubscribe/userId
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/user/unsubscribe/6785599ca2f844023d65034c' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzcwNDQwMDQsImV4cCI6MTczNzMwMzIwNH0.4oUxzm-rahm3OzG0QCXIrCAxyqOk9Z-_1T42rRMOcYU'
