@@ -61,3 +61,12 @@ PUT  ==>  http://localhost:8888/api/video/dislike/videoId
 CURL:
 curl --location --request PUT 'http://localhost:8888/api/video/dislike/678782e78dfe032b5a31fcbe' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1NTk5Y2EyZjg0NDAyM2Q2NTAzNGMiLCJpYXQiOjE3MzY5Njk3OTksImV4cCI6MTczNzIyODk5OX0.vvFm1_Ukx2HHdSaPFtXrEzU3tH4ErF_G4ZuVJI6mV78'
+
+
+
+VIEWS OF VIDEO API:
+PUT  ==>  http://localhost:8888/api/video/views/videoId
+
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/video/views/678782cd8dfe032b5a31fcbb'
