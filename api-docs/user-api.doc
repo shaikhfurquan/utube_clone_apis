@@ -1,6 +1,6 @@
 YOUTUBE CLONE APIS
 
-USER APIS:
+USER APIS DOCS:
 
 REGISTER USER APIS
 POST  ==>  http://localhost:8888/api/user/register

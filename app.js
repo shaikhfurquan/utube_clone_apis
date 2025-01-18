@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload'
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import videoRouter from './routes/video.route.js';
+import commentRouter from './routes/comment.route.js';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.get('/test', (req, res) => {
 // routes
 app.use('/api/user', userRouter)
 app.use('/api/video', videoRouter)
+app.use('/api/comment', commentRouter)
 
 
 export { app }
