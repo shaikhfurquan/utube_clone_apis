@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const videoSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Title is required'],
@@ -68,6 +68,6 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Exporting the User model
-const VideoModel = mongoose.model('Vidoe', userSchema);
+const VideoModel = mongoose.model('Vidoe', videoSchema);
 
 export default VideoModel;
