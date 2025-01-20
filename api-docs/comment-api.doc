@@ -11,3 +11,12 @@ curl --location 'http://localhost:8888/api/comment/new-comment/678782e78dfe032b5
 --data '{
     "commentText" : "Nice video of nodejs series"
 }'
+
+
+
+GET ALL COMMENTS ON VIDEO
+GET  ==>  http://localhost:8888/api/comment/comments/videoId
+
+CURL:
+curl --location 'http://localhost:8888/api/comment/comments/678782e78dfe032b5a31fcbe' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzcxODQzNjcsImV4cCI6MTczNzQ0MzU2N30.Eu5wtMhDY1jXAO59-46IzlOpiZ7MR1VlYqMqusgbNY8'

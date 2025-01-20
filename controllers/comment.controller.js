@@ -22,3 +22,23 @@ export const newComment = async (req, res, next) => {
         next(error);
     }
 }
+
+
+// get all comments for any video
+export const getAllCommentsOnVideo = async (req, res, next) => {
+    try {
+        const comments = await CommentModel.find({ videoId: req.params.videoId }).populate("commentedByUserId" ,  "userName channelName logo.url")
+        if (!comments) {
+            return res.status(404).json({ message: "No comments found for this video" })
+        }
+        res.status(200).json({
+            message: "Comments fetched successfully",
+            commentsLists: comments
+        })
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}
