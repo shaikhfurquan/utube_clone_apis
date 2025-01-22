@@ -20,3 +20,28 @@ GET  ==>  http://localhost:8888/api/comment/comments/videoId
 CURL:
 curl --location 'http://localhost:8888/api/comment/comments/678782e78dfe032b5a31fcbe' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzcxODQzNjcsImV4cCI6MTczNzQ0MzU2N30.Eu5wtMhDY1jXAO59-46IzlOpiZ7MR1VlYqMqusgbNY8'
+
+
+
+UPDATE COMMENT
+PUT  ==>  http://localhost:8888/api/comment/update/commentId
+
+CURL:
+curl --location --request PUT 'http://localhost:8888/api/comment/update/678b56e83d568b4b3c520d0a' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzczNTg1OTUsImV4cCI6MTczNzYxNzc5NX0.lZL_I02MfeUZEc3NZD9ucoL_o3rtCWCmhYWC-AiEliY' \
+--data '{
+    "commentText" : "modified"
+}'
+
+
+DELETE COMMENT
+DELETE  ==>  http://localhost:8888/api/comment/delete/commentId
+
+CURL:
+curl --location --request DELETE 'http://localhost:8888/api/comment/delete/678b56e83d568b4b3c520d0a' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzczNTkxNjcsImV4cCI6MTczNzYxODM2N30.0v6i3BRWsey0x7yMTv5W90sHu03IkGSTywKfY-HMLtU' \
+--data '{
+    "commentText" : "modified"
+}'
