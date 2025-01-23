@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
         {
             videoId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Vidoe', // Assuming you have a Video model
+                ref: 'Video', // Assuming you have a Video model
                 required: true,
             },
             watchedAt: {

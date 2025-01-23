@@ -68,6 +68,6 @@ const videoSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Exporting the User model
-const VideoModel = mongoose.model('Vidoe', videoSchema);
+const VideoModel = mongoose.model('Video', videoSchema);
 
 export default VideoModel;
