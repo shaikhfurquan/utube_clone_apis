@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteVideo, dislikeVideo, likeVideo, updateVideo, uploadVideo, viewsOfVideo } from '../controllers/video.controller.js';
+import { deleteVideo, dislikeVideo, getAllVideos, getVideoById, likeVideo, suggestVideos, updateVideo, uploadVideo, viewsOfVideo } from '../controllers/video.controller.js';
 import { isAuth } from '../middlewares/isAuth.middleware.js';
 
 const videoRouter = express.Router();
@@ -10,6 +10,8 @@ videoRouter.delete('/delete/:videoId', isAuth, deleteVideo)
 videoRouter.put('/like/:videoId', isAuth, likeVideo)
 videoRouter.put('/dislike/:videoId', isAuth, dislikeVideo)
 videoRouter.put('/views/:videoId', viewsOfVideo)
+videoRouter.get('/video/:videoId', getVideoById)
+videoRouter.get('/videos', getAllVideos)
 
 
 export default videoRouter

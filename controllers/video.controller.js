@@ -225,7 +225,7 @@ export const viewsOfVideo = async (req, res, next) => {
         }
         video.views += 1
         await video.save()
-        res.status(200).json({ message: "Video views updated successfully", video})
+        res.status(200).json({ message: "Video views updated successfully", video })
     } catch (error) {
         if (error.name === "CastError") {
             return res.status(400).json({ message: "Invalid ID", error: error.message });
@@ -233,3 +233,41 @@ export const viewsOfVideo = async (req, res, next) => {
         next(error);
     }
 }
+
+
+export const getAllVideos = async (req, res) => {
+    try {
+        const videos = await VideoModel.find();
+
+        if (!videos) {
+            return res.status(404).json({ message: 'Video not found' });
+        }
+
+        res.status(200).json({ count: videos.length, videos: videos });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}
+
+
+export const getVideoById = async (req, res) => {
+    try {
+        const { videoId } = req.params;
+        const video = await VideoModel.findById(videoId);
+
+        if (!video) {
+            return res.status(404).json({ message: 'Video not found' });
+        }
+
+        res.status(200).json(video);
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}
+

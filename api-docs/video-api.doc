@@ -70,3 +70,21 @@ PUT  ==>  http://localhost:8888/api/video/views/videoId
 
 CURL:
 curl --location --request PUT 'http://localhost:8888/api/video/views/678782cd8dfe032b5a31fcbb'
+
+
+
+GET ALL VIDEOS API:
+GET  ==>  http://localhost:8888/api/video/videos
+
+CURL:
+curl --location 'http://localhost:8888/api/video/videos'
+
+
+
+
+GET VIDEO BY ID API:
+GET  ==>  http://localhost:8888/api/video/video/videoId
+
+CURL:
+curl --location 'http://localhost:8888/api/video/video/678782cd8dfe032b5a31fcbb'
+
