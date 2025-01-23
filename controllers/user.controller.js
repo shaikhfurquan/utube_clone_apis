@@ -183,3 +183,89 @@ export const unsubscribeUser = async (req, res, next) => {
         next(error);
     }
 };
+
+
+// add a video to the user's watch history
+export const addToWatchHistory = async (req, res, next) => {
+    try {
+        // Find the user and update their watch history
+        const user = await UserModel.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User  not found' });
+        }
+
+        // Check if the video is already in the watch history
+        const existingEntry = user.watchHistory.find(entry => entry.videoId.toString() === req.body.videoId);
+        if (existingEntry) {
+            // If it exists, update the watchedAt timestamp
+            existingEntry.watchedAt = Date.now();
+        } else {
+            // If it doesn't exist, add a new entry
+            user.watchHistory.push({ videoId: req.body.videoId, watchedAt: Date.now() });
+        }
+
+        await user.save();
+        return res.status(200).json({ success: true, message: 'Video added to watch history' });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};
+
+
+// get the user's watch history
+export const getWatchHistory = async (req, res, next) => {
+    try {
+        // Find the user and populate the watchHistory.videoId
+        const user = await UserModel.findById(req.user._id).populate({
+            path: 'watchHistory.videoId', // Path to populate
+            select: '_id title description video thumbnail category likes dislikes views', // Fields to include from Video model
+        });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User  not found' });
+        }
+
+        return res.status(200).json({ success: true, watchHistory: user.watchHistory });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+};
+
+
+// Remove a video from the user's watch history or clear the entire watch history
+export const removeFromWatchHistory = async (req, res, next) => {
+    try {
+        const user = await UserModel.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        // Check if the video exists in the user's watch history
+        const videoToRemove = user.watchHistory.find(entry => entry.videoId.toString() === req.body.videoId);
+        if (!videoToRemove) {
+            return res.status(404).json({ success: false, message: 'Video not found in watch history' });
+        }
+
+        // // Check ownership
+        if (req.user._id.toString() !== user._id.toString()) {
+            return res.status(403).json({ success: false, message: 'You are not authorized to remove the video' });
+        }
+
+        // // Remove the video
+        user.watchHistory = user.watchHistory.filter(entry => entry.videoId.toString() !== req.body.videoId);
+        await user.save();
+
+        return res.status(200).json({ success: true, message: 'Video removed from watch history' });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({ message: 'Invalid ID', error: error.message });
+        }
+        next(error);
+    }
+};

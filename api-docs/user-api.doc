@@ -58,3 +58,45 @@ PUT  ==>  http://localhost:8888/api/user/unsubscribe/userId
 CURL:
 curl --location --request PUT 'http://localhost:8888/api/user/unsubscribe/6785599ca2f844023d65034c' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3MzcwNDQwMDQsImV4cCI6MTczNzMwMzIwNH0.4oUxzm-rahm3OzG0QCXIrCAxyqOk9Z-_1T42rRMOcYU'
+
+
+
+WATCH HISTORY API:
+POST  ==>  http://localhost:8888/api/user/watch-history
+{
+    "videoId" : "678782cd8dfe032b5a31fcbb"
+}
+
+CURL:
+curl --location 'http://localhost:8888/api/user/watch-history' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3Mzc2MzU4MTMsImV4cCI6MTczNzg5NTAxM30.2UsTBx4aeLSGw2MUF0w9d1F0CT5ikTPRMUV-B3lQ7bc' \
+--data '{
+    "videoId" : "678782cd8dfe032b5a31fcbb"
+}'
+
+
+
+GET USER WATCH HISTORY API:
+GET  ==>  http://localhost:8888/api/user/watch-history
+
+
+CURL:
+curl --location 'http://localhost:8888/api/user/watch-history' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3Mzc2NDIxNzksImV4cCI6MTczNzkwMTM3OX0.B0XxexwaIXHdfkZWjZMpgUGp5-mHoMOPwn_9LVkUWNE'
+
+
+
+REMOVE THE WATCH HISTORY API:
+POST  ==>  http://localhost:8888/api/user/clear-watch-history
+{
+    "videoId" : "678782cd8dfe032b5a31fcbb"
+}
+
+CURL:
+curl --location 'http://localhost:8888/api/user/clear-watch-history' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3Mzc2NTMyMTgsImV4cCI6MTczNzkxMjQxOH0.XHfgnBXbvZkY8b7JrJ4gA_bwqkS2VoFlevMW7oyJuLU' \
+--data '{
+    "videoId" : "678782cd8dfe032b5a31fcbb"
+}'

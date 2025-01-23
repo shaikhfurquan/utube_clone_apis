@@ -54,6 +54,19 @@ const userSchema = new mongoose.Schema({
             ref: 'User',
         },
     ],
+    watchHistory: [
+        {
+            videoId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Vidoe', // Assuming you have a Video model
+                required: true,
+            },
+            watchedAt: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
 }, { timestamps: true });
 
 // Exporting the User model
