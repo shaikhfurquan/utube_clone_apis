@@ -88,3 +88,11 @@ GET  ==>  http://localhost:8888/api/video/video/videoId
 CURL:
 curl --location 'http://localhost:8888/api/video/video/678782cd8dfe032b5a31fcbb'
 
+
+
+
+GET SUGGESTIONS VIDEO API:
+GET  ==>  http://localhost:8888/api/video/video/videoId/suggestions
+
+CURL:
+curl --location 'http://localhost:8888/api/video/video/678782cd8dfe032b5a31fcbb/suggestions'

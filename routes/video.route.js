@@ -12,6 +12,7 @@ videoRouter.put('/dislike/:videoId', isAuth, dislikeVideo)
 videoRouter.put('/views/:videoId', viewsOfVideo)
 videoRouter.get('/video/:videoId', getVideoById)
 videoRouter.get('/videos', getAllVideos)
+videoRouter.get('/video/:videoId/suggestions', suggestVideos)
 
 
 export default videoRouter

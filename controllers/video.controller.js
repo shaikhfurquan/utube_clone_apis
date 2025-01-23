@@ -271,3 +271,39 @@ export const getVideoById = async (req, res) => {
     }
 }
 
+
+
+// Suggest Videos Controller
+export const suggestVideos = async (req, res) => {
+    try {
+        const { videoId } = req.params;
+
+        // Fetch the video details
+        const video = await VideoModel.findById(videoId);
+
+        if (!video) {
+            return res.status(404).json({ message: 'Video not found' });
+        }
+
+        // Extract tags from the current video
+        const { tags } = video;
+
+        // Find other videos with at least one matching tag, excluding the current video
+        const suggestedVideos = await VideoModel.find({
+            _id: { $ne: videoId },  // Exclude the current video
+            tags: { $in: tags },    // Match any tag
+        }).limit(10);               // Limit to 10 suggestions
+
+        res.status(200).json({
+            message: 'Suggested videos retrieved successfully',
+            suggestions: suggestedVideos,
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+
+            next(error);
+
+        };
+    }
+}
