@@ -34,6 +34,16 @@ curl --location 'http://localhost:8888/api/user/login' \
 
 
 
+GET USER PROFILE API:
+GET  ==>  http://localhost:8888/api/user/profile
+
+
+CURL:
+curl --location 'http://localhost:8888/api/user/profile' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4YjdmMzUxYWJkNGNhMWViOWIzZjUiLCJpYXQiOjE3Mzc2NTM2NDYsImV4cCI6MTczNzkxMjg0Nn0.HuGEuE5oLtNbPN3arx_0mBkRmnITbqniYi7H31Fy3hY'
+
+
+
 USER LOGOUT API:
 GET  ==>  http://localhost:8888/api/user/logout
 

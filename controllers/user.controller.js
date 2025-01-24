@@ -63,7 +63,7 @@ export const registerUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
     try {
         // checking if the user is there
-        const user = await UserModel.findOne({ email: req.body.email })
+        const user = await UserModel.findOne({ email: req.body.email }).select('logo userName channelName subscribers password')
         if (!user) {
             return res.status(400).json({ message: 'User not found' })
         }
@@ -92,6 +92,28 @@ export const loginUser = async (req, res, next) => {
         // }
         next(error);
     }
+}
+
+
+export const userProfile = async (req, res, next) => {
+    try {
+        // checking if the user is there
+        const user = await UserModel.findById(req.user._id).select('logo userName channelName subscribers')
+            if(!user) {
+                return res.status(400).json({ message: 'User not found' })
+    }
+
+        res.status(200).json({
+        messsage: `Hello ${user.userName}`,
+        user,
+    })
+} catch (error) {
+    // Handle duplicate email errors
+    // if (error.code === 11000) {
+    //     return res.status(409).json({ message: 'Email already exists' });
+    // }
+    next(error);
+}
 }
 
 
